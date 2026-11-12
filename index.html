@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  Divyashri Patil - personal resume website
+  IIMB Website Development, Module 5 mid-term project
+
+  Everything here uses only what Modules 1-5 taught:
+  semantic HTML, lists, anchors, forms, tables, classes & IDs,
+  flexbox, CSS grid, media queries.
+  ============================================================
+-->
+<html lang="en">
+
+<head>
+  <!-- charset must come first so the browser reads the rest of the file correctly -->
+  <meta charset="UTF-8">
+
+  <!-- This line is what makes media queries actually work on a phone.
+       Without it, a mobile browser pretends to be 980px wide and just zooms out. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Divyashri Patil | Founder, Kyra</title>
+  <meta name="description" content="Divyashri Patil - founder of Kyra, a women-first ride-hailing platform in Bengaluru.">
+
+  <!-- Google Fonts, added with a <link> (Module 4, CSS Fonts).
+       Archivo Black = one weight, very heavy, for the big headings.
+       Inter = a plain workhorse for everything else. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- External stylesheet - the third of the three ways to add CSS, and the one
+       the course recommends because it keeps content and styling separate. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       <header> and <nav> are semantic tags (Module 3, Semantic HTML).
+       Laid out with flexbox, pinned with position: sticky.
+       ============================================================ -->
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#top" class="nav-logo">DIVYASHRI<span class="dot">.</span></a>
+
+      <!-- An unordered list is the standard way to mark up a nav menu -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#ventures">Ventures</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- <main> holds the primary content of the page. There should only ever be one. -->
+  <main id="top">
+
+    <!-- ============================================================
+         HERO - flat black, no gradients. The size of the type does
+         all the work.
+         ============================================================ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Bengaluru &mdash; est. 2007</p>
+
+        <h1 class="hero-title">
+          FOUNDER.<br>
+          <span class="outline">BUILDER.</span><br>
+          DISRUPTOR.
+        </h1>
+
+        <p class="hero-sub">
+          I run <span class="mark">KYRA</span> &mdash; a women-first ride-hailing platform.
+          Only women ride. Only women drive.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#ventures">The work</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/divyashri-patil-9b3549314/"
+            target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Stats strip in a red block, flush against the bottom of the hero -->
+      <ul class="stats">
+        <li><strong>100+</strong><span>rides completed</span></li>
+        <li><strong>1,000+</strong><span>survey responses</span></li>
+        <li><strong>14</strong><span>teams mentored</span></li>
+        <li><strong>3</strong><span>businesses built</span></li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section id="about" class="section">
+      <h2 class="section-title"><span class="num">01</span> About</h2>
+
+      <div class="about-grid">
+        <div>
+          <p class="lead-para">
+            Student founder. I build businesses that put women's livelihoods at the centre.
+          </p>
+          <p>
+            Currently studying at <strong>IIM Bangalore</strong> and the
+            <strong>Mesa School of Business</strong>.
+          </p>
+          <p>
+            Kyra started as a slide in a pitch deck in January 2026. It is now live on the Play
+            Store, running a zero-commission model so earnings stay entirely with the women driving.
+            Before Kyra I co-founded two D2C brands and mentored student founders at the Institute
+            of Venture Building and Mesa, taking teams from idea to real revenue.
+          </p>
+        </div>
+
+        <!-- <aside> is semantic for supporting content next to the main text -->
+        <aside class="card">
+          <h3>What I do</h3>
+          <ul class="tick-list">
+            <li>Product &amp; go-to-market</li>
+            <li>Driver and supply onboarding</li>
+            <li>Growth and brand</li>
+            <li>Operations and systems design</li>
+            <li>Mentoring student founders</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERIENCE
+         Each role is an <article> because it stands on its own.
+         ============================================================ -->
+    <section id="experience" class="section">
+      <h2 class="section-title"><span class="num">02</span> Experience</h2>
+
+      <div class="timeline">
+
+        <article class="role">
+          <div class="role-head">
+            <h3>Founder <span class="at">/ Kyra</span></h3>
+            <p class="role-date">Jan 2026 &mdash; Present</p>
+          </div>
+          <ul class="bullets">
+            <li>Founded a women-first ride-hailing platform for Indian cities where only women ride
+              and only women drive.</li>
+            <li>Built a zero-commission model where riders pay drivers directly, keeping earnings
+              fully with women drivers.</li>
+            <li>Designed a density-first launch, going live only in high-volume areas so riders
+              barely wait.</li>
+            <li>Built a phase-2 lease-to-own engine that trains women who do not drive today and
+              turns them into auto owners in 2.5 to 4 years.</li>
+            <li>Validated demand with 1,000+ survey responses, 250+ conversations and 100 rides
+              completed.</li>
+            <li>Leading product, growth, driver onboarding and go-to-market end to end.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-head">
+            <h3>D2C Challenge Program Manager <span class="at">/ Institute of Venture
+                Building</span></h3>
+            <p class="role-date">Jul 2026 &mdash; Aug 2026</p>
+          </div>
+          <ul class="bullets">
+            <li>Stepped up to lead the entire D2C Challenge programme after the founding programme
+              manager exited mid-way.</li>
+            <li>Brought in an experienced performance marketing mentor to strengthen support for
+              founder teams.</li>
+            <li>Managed end-to-end delivery &mdash; weekly check-ins, goal tracking and keeping 14
+              teams on course.</li>
+            <li>Mentored student-led ventures to revenues of up to &#8377;10L+.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-head">
+            <h3>Student Mentor <span class="at">/ Institute of Venture Building</span></h3>
+            <p class="role-date">Jun 2026 &mdash; Jul 2026</p>
+          </div>
+          <ul class="bullets">
+            <li>Selected to mentor student founders through IVB's three-month D2C Challenge.</li>
+            <li>Mentored 14 teams across growth, marketing, partnerships and go-to-market execution.
+            </li>
+            <li>Guided teams through weekly goals and check-ins to keep ventures scaling.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-head">
+            <h3>Student Mentor <span class="at">/ Mesa School of Business</span></h3>
+            <p class="role-date">May 2026 &mdash; Jun 2026</p>
+          </div>
+          <ul class="bullets">
+            <li>Mentored student founders through Mesa's two-week Future Founders Program across two
+              cohorts.</li>
+            <li>Guided student ventures to &#8377;1L+ in revenue within two weeks.</li>
+            <li>Mentored teams that won awards for highest flea market revenue, grit &amp;
+              entrepreneurship, and demo day pitch.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-head">
+            <h3>Volunteer <span class="at">/ Mantra Surf Club</span></h3>
+            <p class="role-date">Apr 2026</p>
+          </div>
+          <ul class="bullets">
+            <li>Selected by the founder from a competitive applicant pool to solve operational and
+              growth challenges.</li>
+            <li>Redesigned booking and scheduling with automation and AI-led workflows to improve
+              capacity management.</li>
+            <li>Implemented solutions across booking, cafe operations and bike rental management.
+            </li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VENTURES - the card grid asked for in the brief.
+         Laid out with CSS Grid (Module 5).
+         ============================================================ -->
+    <section id="ventures" class="section">
+      <h2 class="section-title"><span class="num">03</span> Ventures</h2>
+      <p class="section-lead">Three businesses, most recent first.</p>
+
+      <div class="card-grid">
+
+        <article class="card venture">
+          <p class="venture-year">2026 &mdash; Present</p>
+          <h3>Kyra</h3>
+          <p class="venture-type">Women-first ride-hailing / Bengaluru</p>
+          <p>
+            Women drivers, women passengers. Live on the Play Store with a zero-commission model,
+            a density-first launch strategy and a lease-to-own path to auto ownership.
+          </p>
+          <ul class="tags">
+            <li>Mobility</li>
+            <li>Marketplace</li>
+            <li>Impact</li>
+          </ul>
+        </article>
+
+        <article class="card venture">
+          <p class="venture-year">2025</p>
+          <h3>FillintheBlank<wbr>.store</h3>
+          <p class="venture-type">D2C poster brand / Co-founder</p>
+          <p>
+            Print-on-demand canvas posters across pop culture, music and quotes. Idea to
+            &#8377;1L in revenue in eight weeks, plus two B2B deals, as a two-person team.
+          </p>
+          <ul class="tags">
+            <li>D2C</li>
+            <li>Sales</li>
+            <li>Ops</li>
+          </ul>
+        </article>
+
+        <article class="card venture">
+          <p class="venture-year">2024</p>
+          <h3>Kritagya Kriti</h3>
+          <p class="venture-type">Sustainable home decor / Co-founder</p>
+          <p>
+            Handmade water hyacinth products sourced straight from women artisans outside Tumkur,
+            cutting out middlemen so profit went back to them. Now expanded into linen clothing.
+          </p>
+          <ul class="tags">
+            <li>Sustainability</li>
+            <li>Sourcing</li>
+            <li>Livelihoods</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRESS - a simple <table> (Module 3, Tables)
+         ============================================================ -->
+    <section class="section">
+      <h2 class="section-title"><span class="num">04</span> Press</h2>
+      <table class="press-table">
+        <caption>Kyra's coverage, October 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Publication</th>
+            <th scope="col">Story</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>07.10.26</td>
+            <td>The Times of India</td>
+            <td>Kyra featured in the Mysore edition</td>
+          </tr>
+          <tr>
+            <td>08.10.26</td>
+            <td>Deccan Herald</td>
+            <td>Women-only auto service profile</td>
+          </tr>
+          <tr>
+            <td>09.10.26</td>
+            <td>UnboxingBLR</td>
+            <td>New app for women auto drivers</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================
+         EDUCATION + SKILLS, side by side on desktop
+         ============================================================ -->
+    <section id="education" class="section">
+      <div class="two-col">
+
+        <div>
+          <h2 class="section-title"><span class="num">05</span> Education</h2>
+          <ul class="edu-list">
+            <li>
+              <h3>Indian Institute of Management Bangalore</h3>
+              <p class="edu-meta">Bachelor of Business Administration / Aug 2026 &mdash; Present</p>
+            </li>
+            <li>
+              <h3>Mesa School of Business</h3>
+              <p class="edu-meta">BBA, Business and Entrepreneurship / Aug 2025 &mdash; Present</p>
+            </li>
+            <li>
+              <h3>Delhi Public School</h3>
+              <p class="edu-meta">CBSE Commerce, Grades 11 &amp; 12 / 2023 &mdash; 2025</p>
+            </li>
+            <li>
+              <h3>Presidency School</h3>
+              <p class="edu-meta">Grades 1 &mdash; 10 / 2013 &mdash; 2023</p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="section-title"><span class="num">06</span> Skills</h2>
+          <ul class="skill-list">
+            <li>Go-to-market</li>
+            <li>Growth marketing</li>
+            <li>Direct sales &amp; B2B</li>
+            <li>Team leadership</li>
+            <li>Mentoring</li>
+            <li>Strategic sourcing</li>
+            <li>Operations design</li>
+            <li>Product management</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM (Module 3, Forms / Buttons / Submit and Names)
+         Every input has a name, and every input has a matching <label>
+         connected through the id - that is what makes a form accessible.
+         ============================================================ -->
+    <section id="contact" class="section">
+      <h2 class="section-title"><span class="num">07</span> Say hi</h2>
+      <p class="section-lead">
+        Building something for women, hiring, or just want to talk about Kyra?
+      </p>
+
+      <form class="contact-form" action="#" method="post">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="subject">What is this about?</label>
+          <!-- A dropdown: the value that gets submitted comes from each option -->
+          <select id="subject" name="subject">
+            <option value="kyra">Kyra</option>
+            <option value="mentoring">Mentoring</option>
+            <option value="press">Press</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5"
+            placeholder="Tell me what you are working on."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send it</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <p class="footer-name">DIVYASHRI PATIL</p>
+    <ul class="footer-links">
+      <li><a href="https://www.linkedin.com/in/divyashri-patil-9b3549314/" target="_blank"
+          rel="noopener">LinkedIn</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+    <p class="footer-note">Built with plain HTML and CSS for the IIMB Website Development course.</p>
+  </footer>
+
+</body>
+
+</html>
