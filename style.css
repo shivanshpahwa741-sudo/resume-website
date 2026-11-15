@@ -2,16 +2,17 @@
    Divyashri Patil - resume website stylesheet
    IIMB Website Development, Module 5 mid-term project
 
-   Only Module 1-5 CSS is used:
-     M04 - selectors (element / class / ID), colours, fonts, box model,
-           cascade, combining selectors, pseudo-selectors, inheritance,
-           span, display, position, float & clear
-     M05 - multiple classes on one element, flexbox, CSS grid,
-           media queries
+   Every technique in this file is one taught in Modules 1-5:
+     M04 - the three ways to add CSS (this is an external stylesheet),
+           syntax, element / class / ID selectors, colours, fonts,
+           the box model, the cascade, combining selectors,
+           pseudo-selectors, inheritance, span, display, position
+     M05 - multiple classes on one element, CSS layouts, flexbox,
+           CSS grid (repeat and minmax), media queries
 
    Order of this file:
-     1.  Variables and reset
-     2.  Base typography
+     1.  Colour palette (reference only)
+     2.  Base: elements and typography
      3.  Reusable layout helpers
      4.  Buttons
      5.  Navigation bar      - flexbox + position: sticky
@@ -26,76 +27,62 @@
      14. Contact form
      15. Footer
      16. Media queries
-
-   Colour palette - deliberately tiny: black, one red, two greys.
-   No gradients anywhere. Flat colour only.
    ================================================================== */
 
 
 /* ==================================================================
-   1. VARIABLES AND RESET
+   1. COLOUR PALETTE
+
+   Written out here as a comment so the whole scheme can be read in
+   one place. The colours are then typed as normal hex values in the
+   rules below. Keeping the palette this small is what makes the site
+   look consistent - every section draws from the same eight colours.
+
+     #000000  black      page background
+     #0b0b0b  ink        the contact band, slightly lifted off black
+     #141414  panel      card background
+     #2a2a2a  line       hairline borders
+     #ffffff  white      primary text
+     #9a9a9a  grey       secondary text
+     #ff2a2a  red        the single accent colour
+     #c40f0f  red dark   hover state for red
+
+   All colour is flat. There are no gradients anywhere on the site.
    ================================================================== */
 
-/*
-  :root is the <html> element. Custom properties declared here are
-  inherited by every element on the page, so changing --red once
-  re-colours the whole site. This is inheritance + the cascade doing
-  the work for us.
-*/
-:root {
-  --black: #000000;    /* page background                  */
-  --ink: #0b0b0b;      /* slightly lifted black for bands  */
-  --panel: #141414;    /* card background                  */
-  --line: #2a2a2a;     /* hairline borders                 */
-  --white: #ffffff;
-  --grey: #9a9a9a;     /* secondary text                   */
-  --red: #ff2a2a;      /* the one accent colour            */
-  --red-dark: #c40f0f; /* hover / pressed state            */
-}
 
-/*
-  The universal selector * matches every element.
-  border-box makes padding and borders count INSIDE the width you set,
-  which is the sane half of the box model (M04, Box Model).
-*/
-* {
-  box-sizing: border-box;
-}
+/* ==================================================================
+   2. BASE: ELEMENTS AND TYPOGRAPHY
+
+   These are element selectors, so they apply to every matching tag on
+   the page. Anything set here is inherited by child elements unless a
+   class further down overrides it - later and more specific rules win,
+   which is the cascade.
+   ================================================================== */
 
 body {
+  /* browsers add a default margin around the body - remove it so the
+     header and hero can sit flush against the edge of the window */
   margin: 0;
-  background-color: var(--black);
-  color: var(--white);
 
-  /* Inter is the body font; the rest are fallbacks if it fails to load */
+  background-color: #000000;
+  color: #ffffff;
+
+  /* Inter is loaded from Google Fonts in the head of index.html.
+     The rest of the list are fallbacks used if Inter fails to load. */
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 17px;
   line-height: 1.65;
-
-  /* stops a long word or URL from pushing the layout sideways */
-  overflow-wrap: break-word;
 }
-
-
-/* ==================================================================
-   2. BASE TYPOGRAPHY
-   Element selectors, so these apply everywhere unless a class
-   overrides them further down. Later rules win - that is the cascade.
-   ================================================================== */
 
 h1,
 h2,
 h3 {
-  /* Archivo Black ships one weight only (400), but that weight IS heavy */
+  /* Archivo Black ships in one weight only, and that weight is heavy */
   font-family: "Archivo Black", Arial, sans-serif;
   font-weight: 400;
   margin: 0 0 12px 0;
-
-  /* negative letter-spacing tightens display type so a heading reads
-     as one solid block instead of loose, floaty letters */
-  letter-spacing: -0.02em;
   line-height: 1.05;
-  text-transform: uppercase;
 }
 
 p {
@@ -103,17 +90,16 @@ p {
 }
 
 a {
-  color: var(--white);
+  color: #ffffff;
+
+  /* removes the default underline on links */
   text-decoration: none;
 }
 
-/* :hover is a pseudo-selector (M04) - it targets a state, not an element */
+/* :hover is a pseudo-class - it targets a state of the element rather
+   than the element itself */
 a:hover {
-  color: var(--red);
-}
-
-strong {
-  font-weight: 700;
+  color: #ff2a2a;
 }
 
 
@@ -122,82 +108,81 @@ strong {
    ================================================================== */
 
 /*
-  .section is the standard page band. max-width stops text stretching
-  to 2000px on a wide monitor; margin: 0 auto centres the block, which
-  is the course's way of centring a fixed-width box.
+  .section is the standard band used by every part of the page.
+  max-width stops a line of text stretching right across a wide
+  monitor, and margin: 0 auto centres the box - the left and right
+  margins share the leftover space equally.
 */
 .section {
   max-width: 1080px;
   margin: 0 auto;
   padding: 90px 24px;
-
-  /* a hairline between bands instead of alternating backgrounds */
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .section-lead {
-  color: var(--grey);
+  color: #9a9a9a;
   max-width: 620px;
-  margin-top: -4px;
   margin-bottom: 40px;
 }
 
-/* the one oversized paragraph at the top of About */
+/* the single oversized paragraph at the top of the About section */
 .lead-para {
   font-family: "Archivo Black", Arial, sans-serif;
   font-size: 26px;
   line-height: 1.25;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
   margin-bottom: 24px;
 }
 
 
 /* ==================================================================
    4. BUTTONS
-   .btn carries the shared shape; .btn-primary and .btn-ghost carry
-   only the colours. Two classes on one element (M05) means the shape
-   is written once and never repeated.
+
+   .btn holds the shape that both buttons share, and .btn-primary and
+   .btn-ghost hold only the colours. In the HTML an element carries
+   both at once, for example class="btn btn-primary". Putting multiple
+   classes on one element (M05) means the shared shape is written once
+   instead of being repeated in two separate rules.
    ================================================================== */
 
 .btn {
-  /* <a> is inline, so top and bottom padding would be ignored.
-     inline-block makes it accept a box while still sitting in a row. */
+  /* an <a> is an inline element, so top and bottom padding would be
+     ignored. inline-block lets it take a proper box while still
+     sitting beside its neighbour on the same line. */
   display: inline-block;
 
   padding: 14px 30px;
   font-family: "Archivo Black", Arial, sans-serif;
   font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 
-  /* square corners, not pills - part of the hard-edged look */
-  border: 2px solid var(--red);
+  /* square corners, not rounded pills - this is the hard-edged look */
+  border: 2px solid #ff2a2a;
   cursor: pointer;
 }
 
 .btn-primary {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: #ff2a2a;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: var(--red-dark);
-  border-color: var(--red-dark);
-  color: var(--white);
+  background-color: #c40f0f;
+  border-color: #c40f0f;
+  color: #ffffff;
 }
 
 .btn-ghost {
+  /* transparent lets the black page background show through */
   background-color: transparent;
-  color: var(--white);
+  color: #ffffff;
 }
 
-/* the ghost button fills in on hover - a straight colour swap,
-   no fade, no gradient */
+/* the hollow button fills in on hover - a straight swap of two flat
+   colours, with no fade and no gradient */
 .btn-ghost:hover {
-  background-color: var(--white);
-  border-color: var(--white);
-  color: var(--black);
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
 }
 
 
@@ -206,20 +191,22 @@ strong {
    ================================================================== */
 
 .site-header {
-  /* sticky = scrolls normally until it reaches top: 0, then pins.
-     z-index keeps it above the content scrolling underneath. */
+  /* position: sticky scrolls normally until the element reaches the
+     offset given by top, then pins it there. z-index stacks it above
+     the content that scrolls underneath it. */
   position: sticky;
   top: 0;
   z-index: 10;
 
-  background-color: var(--black);
-  border-bottom: 1px solid var(--line);
+  background-color: #000000;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .nav {
-  /* flex puts the logo and the menu on one row;
-     space-between pushes them to opposite ends;
-     align-items centres them against each other vertically */
+  /* display: flex turns this into a flex container, so its children
+     line up in a row. justify-content: space-between pushes the first
+     child to the far left and the last to the far right.
+     align-items: center lines them up vertically against each other. */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -232,23 +219,24 @@ strong {
 .nav-logo {
   font-family: "Archivo Black", Arial, sans-serif;
   font-size: 18px;
-  letter-spacing: 0.02em;
-  color: var(--white);
+  color: #ffffff;
 }
 
-/* a <span> inside the logo, coloured on its own (M04, span).
-   This is exactly what span is for: styling part of a line of text. */
+/* a <span> wrapped around just the full stop in the logo, so that one
+   character can be coloured on its own. This is what span is for:
+   styling part of a line of text without affecting the rest. */
 .dot {
-  color: var(--red);
+  color: #ff2a2a;
 }
 
 .nav-links {
-  /* the browser's default bullets and indent have to be removed by hand */
+  /* a <ul> comes with bullet points and a left indent by default,
+     so both have to be switched off by hand for a nav menu */
   list-style: none;
   margin: 0;
   padding: 0;
 
-  /* a second flex container, this time for the menu items */
+  /* a second flex container, this time laying out the menu items */
   display: flex;
   gap: 28px;
 }
@@ -256,29 +244,29 @@ strong {
 .nav-links a {
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
 
-  /* a transparent border reserves the space now, so the link does not
-     jump down by 2px when the red underline appears on hover */
+  /* a transparent border reserves the two pixels now, so the link
+     does not shift downwards when the red underline appears on hover */
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
 }
 
 .nav-links a:hover {
-  color: var(--white);
-  border-bottom-color: var(--red);
+  color: #ffffff;
+  border-bottom-color: #ff2a2a;
 }
 
 
 /* ==================================================================
    6. HERO
-   Flat black. No gradients - the sheer size of the type carries it.
+
+   Flat black with no decoration. The size of the type does all of
+   the work here.
    ================================================================== */
 
 .hero {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .hero-inner {
@@ -290,44 +278,35 @@ strong {
 .eyebrow {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--red);
+  color: #ff2a2a;
   margin-bottom: 22px;
 }
 
 .hero-title {
-  /* clamp(min, preferred, max): the font grows with the viewport but
-     never drops below 48px or climbs past 132px. One line of CSS
-     instead of three font-size overrides in media queries. */
-  font-size: clamp(48px, 11vw, 132px);
-  letter-spacing: -0.04em;
-  line-height: 0.92;
+  /* a plain font-size in pixels. The media queries at the bottom of
+     this file step it down on smaller screens. */
+  font-size: 96px;
+  line-height: 0.95;
   margin: 0 0 28px 0;
 }
 
-/*
-  The hollow middle line. -webkit-text-stroke draws the letter edges
-  and a transparent fill knocks out the middle. The colour declaration
-  is listed first so an older browser that ignores the stroke still
-  shows the word rather than nothing.
-*/
-.outline {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--white);
+/* the middle line of the hero heading, picked out in red so the three
+   lines are not one undifferentiated block */
+.hero-red {
+  color: #ff2a2a;
 }
 
 .hero-sub {
   max-width: 560px;
   font-size: 19px;
-  color: var(--grey);
+  color: #9a9a9a;
   margin-bottom: 36px;
 }
 
-/* .mark highlights KYRA inside the sentence - another span */
+/* .mark highlights the word KYRA inside the sentence - another span */
 .mark {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: #ff2a2a;
+  color: #ffffff;
   font-weight: 700;
   padding: 2px 8px;
 }
@@ -336,8 +315,8 @@ strong {
   display: flex;
   gap: 14px;
 
-  /* if the two buttons will not fit side by side, the second drops to
-     its own line instead of overflowing the screen */
+  /* if the two buttons will not fit side by side, flex-wrap lets the
+     second drop onto its own line instead of overflowing the screen */
   flex-wrap: wrap;
 }
 
@@ -347,9 +326,10 @@ strong {
   margin: 0;
   padding: 0;
 
-  background-color: var(--red);
+  background-color: #ff2a2a;
 
-  /* four equal columns (M05, CSS Grid). 1fr each = share the row evenly. */
+  /* CSS Grid (M05). repeat(4, 1fr) means four columns, each taking
+     one equal fraction of the available width. */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
@@ -357,19 +337,20 @@ strong {
 .stats li {
   padding: 26px 24px;
 
-  /* dividers between the four cells, in dark-on-red */
-  border-left: 1px solid rgba(0, 0, 0, 0.25);
+  /* a darker red, used as a divider line between the four cells */
+  border-left: 1px solid #c02020;
 }
 
-/* :first-child is a pseudo-selector - it kills the divider on the
-   leftmost cell without needing an extra class in the HTML */
+/* :first-child is a pseudo-class that matches only the first list
+   item, so the divider can be removed from the leftmost cell without
+   adding an extra class in the HTML */
 .stats li:first-child {
   border-left: none;
 }
 
 .stats strong {
-  /* strong and span are inline by default, so display: block puts
-     each on its own line and stacks the number above the label */
+  /* <strong> and <span> are both inline by default. display: block
+     puts each on its own line, stacking the number above its label. */
   display: block;
   font-family: "Archivo Black", Arial, sans-serif;
   font-size: 34px;
@@ -381,8 +362,6 @@ strong {
   margin-top: 6px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 
@@ -392,19 +371,14 @@ strong {
 
 .section-title {
   font-size: 38px;
-  letter-spacing: -0.03em;
   margin-bottom: 28px;
 }
 
-/* the small red 01 / 02 / 03 in front of each heading */
+/* the small red 01 / 02 / 03 that sits in front of each heading */
 .num {
-  color: var(--red);
-  font-size: 16px;
-
-  /* lifts the number up near the cap height instead of the baseline */
-  vertical-align: super;
+  color: #ff2a2a;
+  font-size: 18px;
   margin-right: 10px;
-  letter-spacing: 0;
 }
 
 
@@ -415,23 +389,26 @@ strong {
 .about-grid {
   display: grid;
 
-  /* text column roughly twice the width of the card beside it */
+  /* two columns: the text column takes two fractions and the card
+     beside it takes one, so the text is twice as wide */
   grid-template-columns: 2fr 1fr;
   gap: 44px;
 
-  /* start stops the short card stretching to match the tall text */
+  /* without this the short card would stretch to match the height of
+     the tall text column next to it */
   align-items: start;
 }
 
 
 /* ==================================================================
    9. CARDS
-   One .card rule, reused by the About aside and every venture.
+
+   One .card rule, reused by the About panel and all three ventures.
    ================================================================== */
 
 .card {
-  background-color: var(--panel);
-  border: 1px solid var(--line);
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
   padding: 28px;
 }
 
@@ -440,12 +417,12 @@ strong {
   margin-bottom: 16px;
 }
 
-/* a class and a pseudo-selector combined (M04, Combining Selectors) */
+/* a class selector and a pseudo-class combined together (M04) */
 .card:hover {
-  border-color: var(--red);
+  border-color: #ff2a2a;
 }
 
-/* ---- the tick list inside the About card ---- */
+/* ---- the list inside the About card ---- */
 .tick-list {
   list-style: none;
   margin: 0;
@@ -453,26 +430,29 @@ strong {
 }
 
 .tick-list li {
+  /* padding-left leaves an empty strip on the left of each item,
+     which the red marker below is then positioned into */
   padding-left: 22px;
 
-  /* position: relative turns this <li> into the reference box that the
-     absolutely positioned marker below is measured against (M04) */
+  /* position: relative makes this <li> the reference box that the
+     absolutely positioned marker is measured against (M04) */
   position: relative;
   margin-bottom: 10px;
-  color: var(--grey);
+  color: #9a9a9a;
   font-size: 15px;
 }
 
 /*
-  ::before inserts generated content before the list item's text.
-  absolute lifts it out of the normal flow and pins it to the left
-  edge of the <li>, which the padding-left above left empty for it.
+  ::before is a pseudo-element. It inserts the generated content from
+  the content property before the text of the list item.
+  position: absolute lifts it out of the normal flow and pins it to
+  the left edge of the <li>, in the strip left empty by padding-left.
 */
 .tick-list li::before {
   content: "/";
   position: absolute;
   left: 0;
-  color: var(--red);
+  color: #ff2a2a;
   font-weight: 700;
 }
 
@@ -482,25 +462,27 @@ strong {
    ================================================================== */
 
 .timeline {
-  /* flex in column direction stacks the roles vertically */
+  /* flex-direction: column stacks the roles vertically instead of
+     laying them out in a row */
   display: flex;
   flex-direction: column;
 }
 
 .role {
   padding: 30px 0 30px 28px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #2a2a2a;
 
-  /* the vertical spine running down the timeline */
-  border-left: 2px solid var(--line);
+  /* this left border is the vertical spine of the timeline */
+  border-left: 2px solid #2a2a2a;
   position: relative;
 }
 
 .role:hover {
-  border-left-color: var(--red);
+  border-left-color: #ff2a2a;
 }
 
-/* the square node on the spine, pulled half outside it */
+/* the small red square sitting on the spine, pulled half outside it
+   by the negative left value */
 .role::before {
   content: "";
   position: absolute;
@@ -508,7 +490,7 @@ strong {
   top: 36px;
   width: 10px;
   height: 10px;
-  background-color: var(--red);
+  background-color: #ff2a2a;
 }
 
 .role-head {
@@ -526,27 +508,24 @@ strong {
   margin: 0;
 }
 
-/* the "/ Kyra" half of the heading, in red */
+/* the "/ Kyra" half of each job title */
 .at {
-  color: var(--red);
+  color: #ff2a2a;
 }
 
 .role-date {
   margin: 0;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--grey);
-
-  /* keeps "Jan 2026 - Present" from breaking across two lines */
-  white-space: nowrap;
+  color: #9a9a9a;
 }
 
 .bullets {
   margin: 0;
+
+  /* a <ul> needs left padding or its bullets sit outside the box */
   padding-left: 18px;
-  color: var(--grey);
+  color: #9a9a9a;
   font-size: 15px;
 }
 
@@ -554,34 +533,28 @@ strong {
   margin-bottom: 8px;
 }
 
-/* ::marker styles only the bullet glyph, leaving the text alone */
-.bullets li::marker {
-  color: var(--red);
-}
-
 
 /* ==================================================================
-   11. VENTURES GRID  (CSS Grid, M05)
+   11. VENTURES GRID  (CSS grid, M05)
    ================================================================== */
 
 .card-grid {
   display: grid;
 
-  /*
-    auto-fit + minmax is the responsive grid pattern from Module 5:
-    fit as many columns as will go, each at least 280px wide, sharing
-    the leftover space equally. The column count reflows on its own,
-    so no media query is needed for this bit.
-  */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* three equal columns on a desktop screen. The media queries at the
+     bottom of the file drop this to two columns and then to one. */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-/* class="card venture" - two classes on one element (M05).
-   .venture only adds what differs from a plain card. */
+/*
+  In the HTML these elements carry class="card venture" - two classes
+  at once (M05). .card supplies the background, border and padding,
+  and .venture adds only the things that are different.
+*/
 .venture {
-  /* flex column so the tag list can be pushed to the bottom, keeping
-     all three cards' tags aligned even when the text runs longer */
+  /* a flex column, so that the tag list at the bottom can be pushed
+     down and stay level across all three cards */
   display: flex;
   flex-direction: column;
 }
@@ -589,9 +562,7 @@ strong {
 .venture-year {
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--red);
+  color: #ff2a2a;
   margin-bottom: 10px;
 }
 
@@ -603,14 +574,12 @@ strong {
 .venture-type {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
   margin-bottom: 14px;
 }
 
 .venture p {
-  color: var(--grey);
+  color: #9a9a9a;
   font-size: 15px;
 }
 
@@ -622,20 +591,19 @@ strong {
   flex-wrap: wrap;
   gap: 8px;
 
-  /* auto top margin inside a flex column swallows all the spare space,
-     shoving the tags down to the bottom of the card */
+  /* inside a flex column, margin-top: auto absorbs all the spare
+     space above the element, pushing the tags to the bottom of the
+     card no matter how long the paragraph above them is */
   margin-top: auto;
   padding-top: 18px;
 }
 
 .tags li {
-  border: 1px solid var(--line);
+  border: 1px solid #2a2a2a;
   padding: 5px 11px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
 }
 
 
@@ -646,48 +614,46 @@ strong {
 .press-table {
   width: 100%;
 
-  /* collapse merges adjoining cell borders into one line instead of
-     drawing two of them side by side */
+  /* by default every cell draws its own border, so adjoining cells
+     show two lines side by side. collapse merges them into one. */
   border-collapse: collapse;
 }
 
 .press-table caption {
-  /* captions are centred by default; left reads better here */
+  /* a caption is centred by default; left-aligning reads better */
   text-align: left;
-  color: var(--grey);
+  color: #9a9a9a;
   font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   padding-bottom: 14px;
 }
 
 .press-table th {
-  /* table headers are centred and bold by default - override both */
+  /* <th> text is centred and bold by default - override the alignment */
   text-align: left;
   font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--black);
-  background-color: var(--red);
+  color: #000000;
+  background-color: #ff2a2a;
   padding: 12px 14px;
 }
 
 .press-table td {
   padding: 14px;
-  border-bottom: 1px solid var(--line);
-  color: var(--grey);
+  border-bottom: 1px solid #2a2a2a;
+  color: #9a9a9a;
   font-size: 15px;
 }
 
-/* :first-child picks out the date column with no extra markup */
+/* :first-child picks out the date cell in every row, with no extra
+   class needed in the markup */
 .press-table td:first-child {
-  color: var(--white);
+  color: #ffffff;
   font-weight: 700;
-  white-space: nowrap;
 }
 
+/* a combined selector: inside .press-table, in the row being hovered,
+   style the td elements */
 .press-table tbody tr:hover td {
-  color: var(--white);
+  color: #ffffff;
 }
 
 
@@ -709,7 +675,7 @@ strong {
 
 .edu-list li {
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .edu-list h3 {
@@ -720,9 +686,7 @@ strong {
 .edu-meta {
   margin: 0;
   font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
 }
 
 .skill-list {
@@ -730,36 +694,37 @@ strong {
   margin: 0;
   padding: 0;
 
-  /* a wrapping row of chips */
+  /* a row of chips that wraps onto as many lines as it needs */
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 .skill-list li {
-  border: 1px solid var(--line);
+  border: 1px solid #2a2a2a;
   padding: 9px 14px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .skill-list li:hover {
-  background-color: var(--red);
-  border-color: var(--red);
-  color: var(--white);
+  background-color: #ff2a2a;
+  border-color: #ff2a2a;
+  color: #ffffff;
 }
 
 
 /* ==================================================================
    14. CONTACT FORM
-   Styled with an ID selector on the section (#contact) plus classes
-   on the parts - the brief asks for element, class AND ID selectors.
+
+   This section is styled with an ID selector, because the rule applies
+   to exactly one element on the page. The parts inside it use class
+   selectors, because those are reused. Between them the page uses all
+   three kinds of selector - element, class and ID.
    ================================================================== */
 
 #contact {
-  background-color: var(--ink);
+  background-color: #0b0b0b;
 }
 
 .contact-form {
@@ -767,7 +732,7 @@ strong {
 }
 
 .form-row {
-  /* name and email share a row on desktop */
+  /* name and email sit side by side in two equal columns */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
@@ -777,32 +742,33 @@ strong {
   margin-bottom: 18px;
 }
 
-/* label is inline by default; block puts it on its own line
-   above the input */
+/* a <label> is inline by default; display: block puts it on its own
+   line directly above its input */
 .field label {
   display: block;
   margin-bottom: 7px;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
 }
 
 /*
-  A grouped selector: one rule for three different elements.
-  Form controls do NOT inherit the body font - that is the one famous
-  exception to inheritance (M04) - so font-family has to be set here
-  by hand. font-family: inherit pulls it back from the parent.
+  One rule written for three different elements at once, separated by
+  commas. Form controls are the exception to inheritance - they do not
+  pick up the font set on body - so font-family has to be given here.
+  The value inherit tells them to take it from their parent after all.
 */
 .field input,
 .field select,
 .field textarea {
-  width: 100%;
+  /* 94% rather than 100% because padding and borders are added on top
+     of the width, so a full 100% would push the field past the edge
+     of its column (M04, the box model) */
+  width: 94%;
   padding: 13px 14px;
-  background-color: var(--black);
-  border: 1px solid var(--line);
-  color: var(--white);
+  background-color: #000000;
+  border: 1px solid #2a2a2a;
+  color: #ffffff;
   font-family: inherit;
   font-size: 15px;
 }
@@ -811,19 +777,10 @@ strong {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
+  /* the browser draws its own highlight ring; none removes it so the
+     red border below is the only thing showing focus */
   outline: none;
-  border-color: var(--red);
-}
-
-/* ::placeholder targets the greyed-out hint text inside the box */
-.field input::placeholder,
-.field textarea::placeholder {
-  color: #5a5a5a;
-}
-
-.field textarea {
-  /* stops the user dragging it wider and breaking the layout */
-  resize: vertical;
+  border-color: #ff2a2a;
 }
 
 
@@ -832,16 +789,14 @@ strong {
    ================================================================== */
 
 .site-footer {
-  border-top: 2px solid var(--red);
+  border-top: 2px solid #ff2a2a;
   padding: 50px 24px;
   text-align: center;
 }
 
 .footer-name {
   font-family: "Archivo Black", Arial, sans-serif;
-  font-size: clamp(32px, 8vw, 72px);
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-size: 60px;
   margin-bottom: 20px;
 }
 
@@ -850,7 +805,7 @@ strong {
   margin: 0 0 18px 0;
   padding: 0;
 
-  /* justify-content centres the two links along the flex row */
+  /* justify-content: center centres the two links along the row */
   display: flex;
   justify-content: center;
   gap: 26px;
@@ -859,26 +814,25 @@ strong {
 .footer-links a {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
+  color: #9a9a9a;
 }
 
 .footer-note {
   margin: 0;
   font-size: 12px;
-  color: #5a5a5a;
+  color: #6a6a6a;
 }
 
 
 /* ==================================================================
    16. MEDIA QUERIES  (M05)
-   Everything above is the desktop layout; these blocks override it as
-   the screen gets narrower. Each one only changes what actually
-   breaks - the rest is still inherited from the rules above.
+
+   Everything above describes the desktop layout. These two blocks
+   override only the parts that break as the screen gets narrower -
+   everything else is still inherited from the rules above.
    ================================================================== */
 
-/* ---- tablet ---- */
+/* ---- tablet: 900px and below ---- */
 @media (max-width: 900px) {
 
   /* both two-column layouts collapse into a single stacked column */
@@ -888,9 +842,22 @@ strong {
     gap: 32px;
   }
 
-  /* four stats across is too tight here, so go 2 x 2 */
+  /* four statistics across is too cramped here, so go two by two */
   .stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* three venture cards become two */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-title {
+    font-size: 64px;
+  }
+
+  .footer-name {
+    font-size: 44px;
   }
 
   .section {
@@ -902,10 +869,10 @@ strong {
   }
 }
 
-/* ---- phone ---- */
+/* ---- phone: 600px and below ---- */
 @media (max-width: 600px) {
 
-  /* the nav stacks: logo on top, links underneath and centred */
+  /* the navigation stacks: logo on top, links centred underneath */
   .nav {
     flex-direction: column;
     gap: 12px;
@@ -917,29 +884,42 @@ strong {
     gap: 16px;
   }
 
-  /* one stat per row, so the dividers move to the top edge */
+  /* one statistic per row, so the dividers move to the top edge */
   .stats {
     grid-template-columns: 1fr;
   }
 
   .stats li {
     border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: 1px solid #c02020;
   }
 
   .stats li:first-child {
     border-top: none;
   }
 
-  /* the name/email row becomes one field per line */
+  /* one venture card per row */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* the name and email row becomes one field per line */
   .form-row {
     grid-template-columns: 1fr;
   }
 
-  /* dates drop below the job title instead of fighting it for space */
+  /* the dates drop below the job title instead of competing with it */
   .role-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .footer-name {
+    font-size: 30px;
   }
 
   .section-title {
@@ -950,10 +930,9 @@ strong {
     font-size: 21px;
   }
 
-  /* full-width buttons are easier to tap */
+  /* full width buttons are easier to tap on a phone */
   .btn {
     display: block;
-    width: 100%;
     text-align: center;
   }
 }
